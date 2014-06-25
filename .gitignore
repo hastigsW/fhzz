@@ -1,0 +1,17 @@
+.bundle
+doc/~*
+db/*.sqlite3
+log/*.log
+log/*
+psd/
+tmp/
+public/uploads/*
+public/assets/*
+uploads/
+solr/**/*
+*.DS_Store
+*.swp
+._*
+*.pid
+.rvmrc
+/dump.rdb
