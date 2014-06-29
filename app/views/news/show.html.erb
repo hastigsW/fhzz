@@ -6,8 +6,8 @@
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
   <dd><%= @news.title %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:image) %>:</strong></dt>
-  <dd><%= image_tag @news.image %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:avatar) %>:</strong></dt>
+  <dd><%= image_tag(@news.avatar_url) if @news.avatar? %></dd>
   <dt><strong><%= model_class.human_attribute_name(:url) %>:</strong></dt>
   <dd><%= link_to @news.url, @news.url, :target => "_blank"  %></dd>
   <dt><strong><%= model_class.human_attribute_name(:content) %>:</strong></dt>

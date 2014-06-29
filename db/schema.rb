@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140624144824) do
+ActiveRecord::Schema.define(version: 20140629024832) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -30,21 +30,21 @@ ActiveRecord::Schema.define(version: 20140624144824) do
     t.integer  "category_id"
     t.string   "name"
     t.string   "sub_title"
-    t.string   "image_url"
     t.string   "url"
     t.text     "desc"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "v_type"
+    t.string   "avatar"
   end
 
   create_table "news", force: true do |t|
     t.string   "title"
-    t.string   "image"
     t.string   "url"
     t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "avatar"
   end
 
 end

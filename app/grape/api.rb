@@ -12,18 +12,48 @@ module Fhzz
 
     resource :home do
       get do
-        Category.includes(:items).all.to_json(
-          include: { items: {} }
-        )
+        cates = Category.includes(:items).all
+        cates.map do |cate|
+          {
+            id: cate.id,
+            name: cate.name,
+            items: cate.items.collect{ |item|
+              {
+                id: item.id,
+                category_id: item.category_id,
+                name: item.name,
+                sub_title: item.sub_title,
+                desc: item.desc,
+                image_url: item.avatar.url,
+                url: item.url,
+                v_type: item.v_type
+              }
+            }
+          }
+        end
       end
     end
 
     resource :categories do
       desc "获取分类详情"
       get ':id', requirements: { id: /[0-9]*/ } do
-        Category.includes(:items).find(params[:id]).as_json(
-          include: { items: {} }
-        )
+        cate = Category.includes(:items).find(params[:id])
+        {
+          id: cate.id,
+          name: cate.name,
+          items: cate.items.collect{ |item|
+            {
+              id: item.id,
+              category_id: item.category_id,
+              name: item.name,
+              sub_title: item.sub_title,
+              desc: item.desc,
+              image_url: item.avatar.url,
+              url: item.url,
+              v_type: item.v_type
+            }
+          }
+        }
       end 
     end
 
@@ -44,14 +74,32 @@ module Fhzz
       end
       get do 
         news = News.recent.paginate(:page => params[:page], :per_page => params[:page_size] || 15)
-        news.as_json
+        news.map do |news|
+          {
+            id: news.id,
+            title: news.title,
+            image: news.avatar.url,
+            url: news.url,
+            content: news.content
+          }
+        end
       end
     end
 
     resource :items do
       desc "获取产品详情"
       get ':id', requirements: { id: /[0-9]*/ } do
-        Item.find(params[:id]).as_json
+        item = Item.find(params[:id])
+        {
+          id: item.id,
+          category_id: item.category_id,
+          name: item.name,
+          sub_title: item.sub_title,
+          desc: item.desc,
+          image_url: item.avatar.url,
+          url: item.url,
+          v_type: item.v_type
+        }
       end 
     end 
 

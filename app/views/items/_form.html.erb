@@ -24,9 +24,10 @@
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :image_url, :class => 'control-label' %>
+    <%= f.label :avatar, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :image_url, :class => 'text_field' %>
+      <%= image_tag(@item.avatar_url) if @item.avatar? %>
+      <%= f.file_field :avatar, :class => 'text_field' %>
     </div>
   </div>
   <div class="control-group">

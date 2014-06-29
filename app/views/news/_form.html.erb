@@ -1,4 +1,4 @@
-<%= form_for @news, :html => { :class => 'form-horizontal' } do |f| %>
+<%= form_for @news, :html => { :class => 'form-horizontal',:enctype => 'multipart/form-data' } do |f| %>
   <div class="control-group">
     <%= f.label :title, :class => 'control-label' %>
     <div class="controls">
@@ -6,9 +6,10 @@
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :image, :class => 'control-label' %>
+    <%= f.label :avatar, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :image, :class => 'text_field' %>
+      <%= image_tag(@news.avatar_url) if @news.avatar? %>
+      <%= f.file_field :avatar, :class => 'text_field' %>
     </div>
   </div>
   <div class="control-group">
