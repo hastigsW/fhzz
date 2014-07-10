@@ -103,7 +103,7 @@ module Fhzz
       end 
     end 
 
-    resource :bunners do
+    resource :bunner do
       desc "轮播图片"
       get do
         Bunner.recent.limit(4).map do |bunner|
