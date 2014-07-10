@@ -103,11 +103,12 @@ module Fhzz
       end 
     end 
 
-    resource :bunner do
+    resource :bunners do
       desc "轮播图片"
       get do
-        root_url = "http://192.168.0.104:3000/" 
-        ["111.jpg", "222.jpg", "333.jpg", "444.jpg"].collect{|image| root_url + "assets/" + image}
+        Bunner.recent.limit(4).map do |bunner|
+          bunner.avatar.url
+        end
       end
     end
 

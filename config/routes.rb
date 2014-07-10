@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :bunners
+
   resources :items
 
   resources :item_types
